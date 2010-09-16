@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    {# How to get this into /site_media/css/base.css ?? #}
+    <link rel="stylesheet" type="text/css" href="/media/css/base.css" />
+    <title>{% block title %}Title{% endblock %} -- ActWithUs</title>
+    {% block headscripts %}{% endblock %}
+</head>
+
+<body>
+    <div id="head">{% block head %}Default head{% endblock %}</div>
+    <div id="content">
+        {% block content %}Default content{% endblock %}
+    </div>
+</body>
+</html>
