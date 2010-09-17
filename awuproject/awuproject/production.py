@@ -1,1 +1,1 @@
-from f3project.settings import *
+from awuproject.settings import *
