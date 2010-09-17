@@ -9,3 +9,4 @@ downloads
 *.pyc
 *.pyd
 *.pyo
+import-sources
