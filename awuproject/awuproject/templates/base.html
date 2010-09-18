@@ -3,14 +3,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/base.css" />
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}js/ext/resources/css/ext-all.css" />
+
     <title>{{ SITE_TITLE }}</title>
 
     {% if debug %}
         <script src="{{ MEDIA_URL }}js/ext/ext-base-debug-w-comments.js" type="text/javascript" charset="utf-8"></script>
         <script src="{{ MEDIA_URL }}js/ext/ext-all-debug-w-comments.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ MEDIA_URL }}js/mif/build/miframe-debug.js" type="text/javascript" charset="utf-8"></script>
     {% else %}
         <script src="{{ MEDIA_URL }}js/ext/ext-base.js" type="text/javascript" charset="utf-8"></script>
         <script src="{{ MEDIA_URL }}js/ext/ext-all.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ MEDIA_URL }}js/mif/build/miframe.js" type="text/javascript" charset="utf-8"></script>
     {% endif %}
     <script type="text/javascript" charset="utf-8">
         Ext.BLANK_IMAGE_URL = '{{ MEDIA_URL }}js/ext/resources/images/default/s.gif';
@@ -20,8 +24,6 @@
 </head>
 
 <body>
-    <div id="content">
-        {% block content %}Default content{% endblock %}
-    </div>
+    {% block content %}Default content{% endblock %}
 </body>
 </html>

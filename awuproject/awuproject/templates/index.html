@@ -2,10 +2,15 @@
 
 
 {% block headscripts %}
-
+<script src="{{ MEDIA_URL }}js/awu/index.js" type="text/javascript" charset="utf-8"></script>
 {% endblock %}
 
 
 {% block content %}
-    ActWithUs
+<div id="header">
+    <h3>{{ SITE_TITLE }}</h3>
+    <div id="user-controls">
+        <a href="{{ logout_url }}">Logout</a>
+    </div>
+</div>
 {% endblock %}
