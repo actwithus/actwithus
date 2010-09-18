@@ -18,6 +18,7 @@
     {% endif %}
     <script type="text/javascript" charset="utf-8">
         Ext.BLANK_IMAGE_URL = '{{ MEDIA_URL }}js/ext/resources/images/default/s.gif';
+        MEDIA_URL = '{{ MEDIA_URL }}';
     </script>
 
     {% block headscripts %}{% endblock %}

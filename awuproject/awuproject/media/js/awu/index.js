@@ -9,11 +9,20 @@ Ext.onReady(function () {
               })
           , new Ext.ux.ManagedIFramePanel(
               { region: 'center'
-              , ref: 'mifp'
+              , ref: 'mainPanel'
               , width: '100%'
               , title: 'Administration tool'
               })
+          , new Ext.ux.ManagedIFramePanel(
+              { region: 'east'
+              , ref: 'welcomePanel'
+              , width: 250
+              , title: 'Welcome'
+              , collapsible: true
+              , split: true
+              })
           ]
       });
-    viewport.mifp.setSrc(document.location + 'admin/');
+    viewport.mainPanel.setSrc(document.location + 'admin/');
+    viewport.welcomePanel.setSrc(MEDIA_URL + 'site/welcome/index.html');
 });
