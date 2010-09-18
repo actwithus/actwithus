@@ -4,14 +4,14 @@ import sys, os
 version = '0.1'
 
 setup(
-    name='awuimport',
+    name='awufundraiser',
     version=version,
-    description="ActWithUs: Data import mechanisms",
+    description="ActWithUs: Fund raising",
     long_description="""\
     What does this app do?
     ======================
 
-    - Data import into ActWithUs.
+    - Help raise funds for an organization.
     """,
     classifiers=[], # Get strings from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     keywords='',
@@ -25,7 +25,6 @@ setup(
     install_requires=[
         'Django >= 1.2.3, < 1.3',
         'awucontacts',
-        'awufundraiser',
     ],
     entry_points="""
     """,

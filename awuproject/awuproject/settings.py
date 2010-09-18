@@ -47,22 +47,29 @@ ROOT_URLCONF = 'awuproject.urls'
 
 
 INSTALLED_APPS = (
+    #
+    # Django
     'django.contrib.auth',
     'django.contrib.comments',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.admin',
-    # 'awucontacts',
-    # 'awuimport',
+    #
+    # Thirdparty
+    'taggit',
+    #
+    # ActWithUs
+    'awucontacts',
+    'awufundraiser',
+    'awuimport',
 )
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
 )
-
-
