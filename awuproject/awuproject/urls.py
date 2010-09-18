@@ -11,9 +11,15 @@ handler500 # Pyflakes
 urlpatterns = patterns(
     '',
     (r'^admin/(.*)', admin.site.root),
+
+    # Accounts
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    (r'^contacts/', include('awucontacts.urls')),
-    (r'^$', 'awuproject.views.index'),
+    (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login'),
+
+    # (r'^contacts/', include('awucontacts.urls')),
+
+    # Top-level index
+    (r'^$', 'awuproject.views.index', {}, 'siteindex'),
 )
 
 

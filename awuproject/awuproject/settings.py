@@ -5,6 +5,8 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
+SITE_TITLE = "ActWithUs"
+
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'postgresql_psycopg2'    # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -31,6 +33,8 @@ MEDIA_URL = '/media/'
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
+
+LOGIN_REDIRECT_URL = '/'
 
 # Don't share this with anybody.
 SECRET_KEY = 'ti7zh7jhmb5^tc-!(+(lf82a3=wqqwbhs^0n&h1pal#(d^(8_-'
@@ -72,4 +76,9 @@ TEMPLATE_LOADERS = (
 
 TEMPLATE_DIRS = (
     os.path.join(os.path.dirname(__file__), "templates"),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'awuproject.context_processors.site_title',
 )
