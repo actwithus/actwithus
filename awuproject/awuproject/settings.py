@@ -5,7 +5,7 @@ ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
 
-SITE_TITLE = "ActWithUs"
+SITE_TITLE = 'ActWithUs'
 
 MANAGERS = ADMINS
 
@@ -80,6 +80,10 @@ TEMPLATE_DIRS = (
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
     'awuproject.context_processors.media_url',
     'awuproject.context_processors.site_title',
 )

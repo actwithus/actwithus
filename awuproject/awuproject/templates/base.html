@@ -4,6 +4,18 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/base.css" />
     <title>{{ SITE_TITLE }}</title>
+
+    {% if debug %}
+        <script src="{{ MEDIA_URL }}js/ext/ext-base-debug-w-comments.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ MEDIA_URL }}js/ext/ext-all-debug-w-comments.js" type="text/javascript" charset="utf-8"></script>
+    {% else %}
+        <script src="{{ MEDIA_URL }}js/ext/ext-base.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ MEDIA_URL }}js/ext/ext-all.js" type="text/javascript" charset="utf-8"></script>
+    {% endif %}
+    <script type="text/javascript" charset="utf-8">
+        Ext.BLANK_IMAGE_URL = '{{ MEDIA_URL }}js/ext/resources/images/default/s.gif';
+    </script>
+
     {% block headscripts %}{% endblock %}
 </head>
 
