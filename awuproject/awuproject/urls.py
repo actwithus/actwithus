@@ -17,9 +17,6 @@ urlpatterns = patterns(
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout_then_login'),
 
     # (r'^contacts/', include('awucontacts.urls')),
-
-    # Top-level index
-    (r'^$', 'awuproject.views.index', {}, 'siteindex'),
 )
 
 
