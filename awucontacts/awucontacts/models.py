@@ -1,14 +1,29 @@
 import django.db.models as m
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
 
 from taggit.managers import TaggableManager
 
 
-class Contact(m.Model):
-    """Contact information about a person or business."""
+class Person(m.Model):
+    """An individual person."""
+
+    given_name = m.CharField(max_length=50, null=True)
+    middle_name = m.CharField(max_length=50, null=True)
+    surname = m.CharField(max_length=50, null=True)
+    last_contacted = m.DateTimeField(null=True)
+    interests = m.ManyToManyField('Interest')
+    tags = TaggableManager()
+
+    def __unicode__(self):
+        return '%s %s' % (self.given_name, self.surname)
+
+
+class Organization(m.Model):
+    """A group of people acting in an organization."""
 
     name = m.CharField(max_length=200, null=True)
     last_contacted = m.DateTimeField(null=True)
-    interests = m.ManyToManyField('Interest')
     tags = TaggableManager()
 
     def __unicode__(self):
@@ -17,7 +32,11 @@ class Contact(m.Model):
 
 class Change(m.Model):
 
-    contact = m.ForeignKey("Contact", related_name='changes')
+    # Link to either a person or an organization.
+    content_type = m.ForeignKey(ContentType)
+    object_id = m.PositiveIntegerField()
+    contact = generic.GenericForeignKey('content_type', 'object_id')
+
     user = m.ForeignKey("auth.User", null=True)
     timestamp = m.DateTimeField(auto_now_add=True)
     message = m.CharField(max_length=250)
@@ -26,11 +45,16 @@ class Change(m.Model):
 class Address(m.Model):
 
     TYPE_CHOICES = [
+        ('M', 'Mailing'),
         ('H', 'Home'),
-        ('W', 'Work'),
+        ('B', 'Business'),
         ]
 
-    contact = m.ForeignKey("Contact", related_name='addresses')
+    # Link to either a person or an organization.
+    content_type = m.ForeignKey(ContentType)
+    object_id = m.PositiveIntegerField()
+    contact = generic.GenericForeignKey('content_type', 'object_id')
+
     type = m.CharField(max_length=1, choices=TYPE_CHOICES, null=True)
     address = m.TextField()
     postal_code = m.CharField(max_length=20, null=True)
@@ -47,7 +71,11 @@ class Phone(m.Model):
         ('M', 'Mobile'),
         ]
 
-    contact = m.ForeignKey("Contact", related_name='phones')
+    # Link to either a person or an organization.
+    content_type = m.ForeignKey(ContentType)
+    object_id = m.PositiveIntegerField()
+    contact = generic.GenericForeignKey('content_type', 'object_id')
+
     type = m.CharField(max_length=1, choices=TYPE_CHOICES, null=True)
     number = m.CharField(max_length=20)
     added = m.DateTimeField(auto_now_add=True)
@@ -61,7 +89,11 @@ class Email(m.Model):
         ('W', 'Work'),
         ]
 
-    contact = m.ForeignKey("Contact", related_name='emails')
+    # Link to either a person or an organization.
+    content_type = m.ForeignKey(ContentType)
+    object_id = m.PositiveIntegerField()
+    contact = generic.GenericForeignKey('content_type', 'object_id')
+
     email = m.EmailField()
     type = m.CharField(max_length=1, choices=TYPE_CHOICES, null=True)
     added = m.DateTimeField(auto_now_add=True)
@@ -70,8 +102,16 @@ class Email(m.Model):
 
 class Relationship(m.Model):
 
-    who = m.ForeignKey("Contact", related_name='relationship_whos')
-    whom = m.ForeignKey("Contact", related_name='relationship_whoms')
+    # Link to either a person or an organization.
+    who_content_type = m.ForeignKey(ContentType, related_name='relationship_who_set')
+    who_object_id = m.PositiveIntegerField()
+    who = generic.GenericForeignKey('who_content_type', 'who_object_id')
+
+    # Link to either a person or an organization.
+    whom_content_type = m.ForeignKey(ContentType, related_name='relationship_whom_set')
+    whom_object_id = m.PositiveIntegerField()
+    whom = generic.GenericForeignKey('whom_content_type', 'whom_object_id')
+
     tag = m.CharField(max_length=50)
     added = m.DateTimeField(auto_now_add=True)
 

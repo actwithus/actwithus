@@ -1,19 +1,20 @@
 from django.contrib import admin
+from django.contrib.contenttypes import generic
 
 import awucontacts.models as m
 
 
-class AddressInline(admin.TabularInline):
+class AddressInline(generic.GenericTabularInline):
 
     model = m.Address
 
 
-class PhoneInline(admin.TabularInline):
+class PhoneInline(generic.GenericTabularInline):
 
     model = m.Phone
 
 
-class EmailInline(admin.TabularInline):
+class EmailInline(generic.GenericTabularInline):
 
     model = m.Email
 
@@ -25,7 +26,17 @@ class EmailInline(admin.TabularInline):
 #     model = m.Relationship
 
 
-class ContactAdmin(admin.ModelAdmin):
+class PersonAdmin(admin.ModelAdmin):
+
+    inlines = [
+        EmailInline,
+        PhoneInline,
+        AddressInline,
+        # RelationshipInline,
+        ]
+
+
+class OrganizationAdmin(admin.ModelAdmin):
 
     inlines = [
         EmailInline,
@@ -36,4 +47,5 @@ class ContactAdmin(admin.ModelAdmin):
 
 
 r = admin.site.register
-r(m.Contact, ContactAdmin)
+r(m.Person, PersonAdmin)
+r(m.Organization, OrganizationAdmin)
