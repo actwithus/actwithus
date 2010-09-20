@@ -58,8 +58,6 @@ class Address(m.Model):
     type = m.CharField(max_length=1, choices=TYPE_CHOICES, null=True)
     address = m.TextField()
     postal_code = m.CharField(max_length=20, null=True)
-    lat = m.DecimalField(max_digits=7, decimal_places=4, null=True)
-    lon = m.DecimalField(max_digits=7, decimal_places=4, null=True)
     added = m.DateTimeField(auto_now_add=True)
 
 
