@@ -10,3 +10,4 @@ downloads
 *.pyd
 *.pyo
 import-sources
+*~
