@@ -75,7 +75,7 @@ class Phone(m.Model):
     contact = generic.GenericForeignKey('content_type', 'object_id')
 
     type = m.CharField(max_length=1, choices=TYPE_CHOICES, null=True)
-    number = m.CharField(max_length=20)
+    number = m.CharField(max_length=50)
     added = m.DateTimeField(auto_now_add=True)
     validated = m.DateTimeField(null=True)
 
